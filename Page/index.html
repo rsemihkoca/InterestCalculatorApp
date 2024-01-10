@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faiz Hesaplama Aracı</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./handleFormSubmit.js" defer></script>
+    <script src="./tercihSecim.js" defer></script>
+
+
+</head>
+
+<body>
+
+    <div id="hn-faiz-widget">
+
+        <form id="hform" method="post" rel="nofollow"
+            action="https://faiz.hesaplama.net/#utm_source=www.tahanci.av.tr&amp;utm_medium=embed&amp;utm_campaign=faiz"
+            target="_blank" class="hnarac" onsubmit="handleFormSubmit(event, this)">
+
+            <fieldset>
+                <legend>Faiz Hesaplama Aracı</legend>
+                <div class="notlar"><em>*</em> Doldurulması zorunlu alanlar.</div>
+                <ol class="wide">
+                    <li id="li_hesaplamasekli"> <label><em>*</em> Tür:</label>
+                        <fieldset><label for="yon"><input id="yon" type="radio" name="yon" value="S" checked="checked"
+                                    onchange="tercihsecim();"> <b>Basit</b> (Sadece tek dönem)</label>
+                            <label for="yonB"><input id="yonB" type="radio" name="yon" value="C"
+                                    onchange="tercihsecim();"> <b>Bileşik</b> (Birden fazla dönem)</label>
+                        </fieldset>
+                    </li>
+                    <li id="li_faizlendirme" style="display:none;"> <label for="faizlendirme"><em>*</em> Faizlendirme
+                            Sıklığı:</label> <select onchange="tercihsecim();" id="faizlendirme" size="1"
+                            name="faizlendirme">
+                            <option value="0">Günlük</option>
+                            <option selected="selected" value="1">Aylık</option>
+                            <option value="3">3 Aylık</option>
+                            <option value="6">6 Aylık</option>
+                            <option value="12">Yıllık</option>
+                        </select> </li>
+                    <li id="li_faiz"> <label for="faizyuzde"><em>*</em> Faiz Oranı:</label>
+                        <fieldset><select onchange="tercihsecim();" id="faizvade" size="1" name="faizvade">
+                                <option value="0">Günlük</option>
+                                <option selected="selected" value="1">Aylık</option>
+                                <option value="12">Yıllık</option>
+                            </select> % <input type="number" id="faizyuzde" name="faizyuzde" step="0.000001"
+                                class="iw3"></fieldset> <span class="orn">Örn. 10,75</span>
+                    </li>
+                    <li id="li_anapara"> <label for="anapara"><em>*</em> Anapara:</label> <input type="number"
+                            id="anapara" name="anapara" step="0.01" class="iw10"> <span class="orn">Örn.
+                            12500,50</span> </li>
+                    <li id="li_vade"> <label for="vade"><em>*</em> Vade:</label> <input type="number" id="vade"
+                            name="vade" step="1" class="iw3"> <select onchange="tercihsecim();" id="vadebirim" size="1"
+                            name="vadebirim">
+                            <option value="0">Gün</option>
+                            <option selected="selected" value="1">Ay</option>
+                            <option value="12">Yıl</option>
+                        </select> <span class="orn">Örn. 15</span> </li>
+                    <li id="li_gunsayisi" style="display:none;"> <label><em>*</em> 1 Yıldaki Gün Sayısı:</label>
+                        <fieldset><label for="gunsayisi"><input id="gunsayisi" type="radio" name="gunsayisi" value="365"
+                                    checked="checked"> <b>365 gün</b> (Vadeli mevduat ve repo gibi yatırım
+                                hesaplamalarında)</label> <label for="gunsayisiB"><input id="gunsayisiB" type="radio"
+                                    name="gunsayisi" value="360"> <b>360 gün</b> (Kredi hesaplamaları gibi
+                                hesaplamalarda)</label></fieldset>
+                    </li>
+                </ol>
+                <div class="buttons"><button type="submit">Hesapla</button> <button type="reset">Temizle</button></div>
+            </fieldset>
+        </form>
+
+
+
+    </div>
+
+</body>
+
+</html>

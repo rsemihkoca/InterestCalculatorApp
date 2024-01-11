@@ -1,0 +1,50 @@
+
+# curl to the service
+# curl -X 'POST' 
+#  'http://localhost:5210/api/Interest/Calculate' 
+#  -H 'accept: text/plain' 
+#  -H 'Content-Type: multipart/form-data' 
+#  -F 'Yon="S"' 
+#  -F 'Faizlendirme=1' 
+#  -F 'FaizBirim=1' 
+#  -F 'FaizYuzde=5' 
+#  -F 'Anapara=5' 
+#  -F 'Vade=5' 
+#  -F 'VadeBirim=1' 
+
+POST http://localhost:5210/api/Interest/Calculate
+accept: text/plain
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Yon"
+
+S
+--WebAppBoundary
+Content-Disposition: form-data; name="Faizlendirme"
+
+1
+--WebAppBoundary
+Content-Disposition: form-data; name="FaizBirim"
+
+1
+--WebAppBoundary
+Content-Disposition: form-data; name="FaizYuzde"
+
+5
+--WebAppBoundary
+Content-Disposition: form-data; name="Anapara"
+
+5
+--WebAppBoundary
+Content-Disposition: form-data; name="Vade"
+
+5
+--WebAppBoundary
+Content-Disposition: form-data; name="VadeBirim"
+
+1
+--WebAppBoundary--
+
+###
+

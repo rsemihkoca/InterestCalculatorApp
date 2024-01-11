@@ -20,6 +20,7 @@ public class InterestController(IInterestService interestService) : ControllerBa
     [HttpPost("Calculate")]
     public ActionResult<CalculateInterestResponse> Calculate([FromForm] CalculateInterestRequest request)
     {
+        Console.WriteLine(request);
         CalculateInterestResponse response = _interestService.Calculate(request);
         Console.WriteLine(response);
         return response;

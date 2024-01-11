@@ -6,13 +6,13 @@ namespace InterestCalculator.Validator;
 public class CalculateInterestRequestValidator : AbstractValidator<CalculateInterestRequest>
 {
 
-    public int ConvertToDays(int unit)
+    static int ConvertToDays(int unit)
     {
         // if unit is 0 return 1 else return unit*30
         return unit == 0 ? 1 : unit * 30;
     }
 
-    public bool VadeBirimValid(CalculateInterestRequest request)
+    static bool VadeBirimValid(CalculateInterestRequest request)
     {
         return (request.Vade * ConvertToDays(request.VadeBirim)) > ConvertToDays(request.Faizlendirme);
     }

@@ -1,3 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using InterestCalculator.Middleware;
+using InterestCalculator.Service;
+using InterestCalculator.Validator;
+
 namespace InterestCalculator;
 
 public class Startup
@@ -11,8 +17,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+
+        services.AddScoped<IInterestService, InterestService>();
         services.AddControllers();
-        
+        services.AddFluentValidationAutoValidation();
+        services.AddSingleton<CalculateInterestRequestValidator>();
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
     }
@@ -26,8 +36,20 @@ public class Startup
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+        app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+        
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
+        // app.UseHttpsRedirection();
 
+        app.UseRouting();
         app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+        });
     }
 }

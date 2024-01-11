@@ -5,6 +5,17 @@ namespace InterestCalculator.Validator;
 
 public class CalculateInterestRequestValidator : AbstractValidator<CalculateInterestRequest>
 {
+
+    public int ConvertToDays(int unit)
+    {
+        // if unit is 0 return 1 else return unit*30
+        return unit == 0 ? 1 : unit * 30;
+    }
+
+    public bool VadeBirimValid(CalculateInterestRequest request)
+    {
+        return (request.Vade * ConvertToDays(request.VadeBirim)) > ConvertToDays(request.Faizlendirme);
+    }
     public CalculateInterestRequestValidator()
     {
         {
@@ -29,21 +40,11 @@ public class CalculateInterestRequestValidator : AbstractValidator<CalculateInte
 
             RuleFor(request => request.VadeBirim)
                 .InclusiveBetween(0, 12).WithMessage("Vade birim alanı 0 ile 12 arasında olmalıdır.");
-            
-            RuleFor(request => request.VadeBirim)
+
+            RuleFor(request => request)
                 .Must(VadeBirimValid)
-                .WithMessage("Vade birimi, faizlendirme sıklığından daha küçük olamaz. Lütfen geçerli bir vade birimi seçiniz.");
+                .WithMessage(
+                    "Vade birimi, faizlendirme sıklığından daha küçük olamaz. Lütfen geçerli bir vade birimi seçiniz.");
         }
-    }
-
-    private int ConvertToDays(int unit)
-    {
-        // if unit is 0 return 1 else return unit*30
-        return unit == 0 ? 1 : unit * 30;
-    }
-
-    private bool VadeBirimValid(CalculateInterestRequest request, int vadeBirim)
-    {
-        return ConvertToDays(request.VadeBirim) > ConvertToDays(request.Faizlendirme);
     }
 }

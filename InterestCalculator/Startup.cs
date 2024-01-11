@@ -21,7 +21,7 @@ public class Startup
         services.AddScoped<IInterestService, InterestService>();
         services.AddControllers();
         services.AddFluentValidationAutoValidation();
-        services.AddSingleton<CalculateInterestRequestValidator>();
+        services.AddScoped<CalculateInterestRequestValidator>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

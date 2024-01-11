@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using InterestCalculator.Middleware;
+using InterestCalculator.Schema;
 using InterestCalculator.Service;
 using InterestCalculator.Validator;
 
@@ -21,7 +22,7 @@ public class Startup
         services.AddScoped<IInterestService, InterestService>();
         services.AddControllers();
         services.AddFluentValidationAutoValidation();
-        services.AddScoped<CalculateInterestRequestValidator>();
+        services.AddScoped<IValidator<CalculateInterestRequest>, CalculateInterestRequestValidator>();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

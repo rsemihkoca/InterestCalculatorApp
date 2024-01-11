@@ -87,7 +87,6 @@ function updateResultUI(response) {
        
                 </fieldset>
                 </form>
-
-                        `;
+                `;
     }
 }

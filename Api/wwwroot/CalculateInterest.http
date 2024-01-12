@@ -1,16 +1,4 @@
 
-# curl to the service
-# curl -X 'POST' 
-#  'http://localhost:5210/api/Interest/Calculate' 
-#  -H 'accept: text/plain' 
-#  -H 'Content-Type: multipart/form-data' 
-#  -F 'Yon="S"' 
-#  -F 'Faizlendirme=1' 
-#  -F 'FaizBirim=1' 
-#  -F 'FaizYuzde=5' 
-#  -F 'Anapara=5' 
-#  -F 'Vade=5' 
-#  -F 'VadeBirim=1' 
 
 POST http://localhost:5210/api/Interest/Calculate
 accept: text/plain

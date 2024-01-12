@@ -39,11 +39,15 @@ public class CalculateInterestRequestValidator : AbstractValidator<CalculateInte
 
             RuleFor(request => request.VadeBirim)
                 .InclusiveBetween(0, 12).WithMessage("Vade birim alanı 0 ile 12 arasında olmalıdır.");
-
-            RuleFor(request => request)
-                .Must(VadeBirimValid)
-                .WithMessage(
-                    "Vade birimi, faizlendirme sıklığından daha küçük olamaz. Lütfen geçerli bir vade birimi seçiniz.");
+            
+            When(request => request.Vade > 0 , () =>
+            {
+                RuleFor(request => request)
+                    .Must(VadeBirimValid)
+                    .WithMessage(
+                        "Vade birimi, faizlendirme sıklığından daha küçük olamaz. Lütfen geçerli bir vade birimi seçiniz.");
+            });
+            
         }
     }
 }

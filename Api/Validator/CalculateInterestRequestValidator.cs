@@ -1,7 +1,7 @@
 using FluentValidation;
-using InterestCalculator.Schema;
+using Api.Schema;
 
-namespace InterestCalculator.Validator;
+namespace Api.Validator;
 
 public class CalculateInterestRequestValidator : AbstractValidator<CalculateInterestRequest>
 {
@@ -20,7 +20,6 @@ public class CalculateInterestRequestValidator : AbstractValidator<CalculateInte
     {
         {
             RuleFor(request => request.Yon)
-                .NotEmpty().WithMessage("Yön alanı boş bırakılamaz.")
                 .Must(yon => yon == "S" || yon == "C").WithMessage("Yön alanı basit veya bileşik olmalıdır.");
 
             RuleFor(request => request.Faizlendirme)

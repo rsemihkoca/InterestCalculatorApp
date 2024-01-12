@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace InterestCalculator.Schema;
+namespace Api.Schema;
 
 public class CalculateInterestResponse
 {

@@ -11,11 +11,6 @@ public class InterestController(IInterestService interestService) : ControllerBa
 
     private readonly IInterestService _interestService = interestService;
     
-    [HttpGet("GetInterestRates")]
-    public IActionResult GetInterestRates()
-    {
-        return Ok("Hi");
-    }
 
     [HttpPost("Calculate")]
     public ActionResult<CalculateInterestResponse> Calculate([FromForm] CalculateInterestRequest request)

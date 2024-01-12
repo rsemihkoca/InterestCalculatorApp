@@ -277,3 +277,31 @@
         .ac-active {
             background-color: #eee;
         }
+
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f2f3f4;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+            overflow: hidden; /* Hide content overflow */
+            
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(50%);
+        }
+
+        .error-message {
+            color: #111;
+            font-weight: bold;
+            font-family: 'Helvetica', sans-serif;
+            margin: auto; /* Remove default margin for better appearance */
+        }

@@ -10,7 +10,7 @@ Uygulama şu endpointlere sahiptir:
 - `/calculate-interest`: Faiz hesaplamasını gerçekleştiren ana endpoint.
 - `/health`: Uygulama sağlığını kontrol etmek için kullanılan endpoint.
 
-![img.png](img.png)
+![img.png](.github/assets/img.png)
 
 ## Arayüz
 
@@ -24,7 +24,7 @@ Uygulamanın arayüzüne http://localhost:5210/ adresinden erişilebilir. Arayü
 - **VadeBirim**: Vadeli İşlem Zaman Birimi (0, 1, 12 değerlerini alabilir)
 - **Vade**: Vadeli İşlem Zamanı
 
-![img_1.png](img_1.png)
+![img_1.png](.github/assets/img_1.png)
 
 ## Parametre Açıklamaları
 
@@ -58,8 +58,8 @@ Uygulamanın arayüzüne http://localhost:5210/ adresinden erişilebilir. Arayü
 ## Validasyonlar
 
 Gerekli validasyonlar yapılmıştır.
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
+![img_2.png](.github/assets/img_2.png)
+![img_3.png](.github/assets/img_3.png)
 
 ## Kullanım
 
@@ -121,9 +121,9 @@ curl -X 'POST' \
 
 ### Başarılı Çıktı Örneği 
 \
-![img_7.png](img_7.png)
-![img_6.png](img_6.png)
+![img_7.png](.github/assets/img_7.png)
+![img_6.png](.github/assets/img_6.png)
 ### Başarısız Çıktı Örneği
 \
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
+![img_4.png](.github/assets/img_4.png)
+![img_5.png](.github/assets/img_5.png)

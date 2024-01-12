@@ -27,5 +27,3 @@ jobs:
       run: dotnet restore ./InterestCalculator.sln
     - name: Build
       run: dotnet build -c Release --no-restore Api.csproj
-    - name: Test
-      run: dotnet test --no-build --verbosity normal

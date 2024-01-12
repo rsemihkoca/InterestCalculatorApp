@@ -12,5 +12,9 @@ public class Program
                 builder.UseStartup<Startup>();
                 // builder.UseUrls("http://localhost:5001/");
             }).Build().Run();
+            
+            // add health check
+            
+            
     }
 }

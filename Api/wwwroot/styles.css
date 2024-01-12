@@ -286,7 +286,8 @@
             background-color: #f2f3f4;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
+            margin: 0 auto;
+            padding: 2%;
             border-radius: 8px;
             opacity: 0;
             transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
@@ -297,6 +298,8 @@
         .show {
             opacity: 1;
             transform: translateX(-50%) translateY(50%);
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .error-message {

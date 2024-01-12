@@ -1,8 +1,8 @@
-using InterestCalculator.Schema;
-using InterestCalculator.Service;
+using Api.Schema;
+using Api.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InterestCalculator;
+namespace Api.Controller;
 
 [ApiController]
 [Route("api/[controller]")]

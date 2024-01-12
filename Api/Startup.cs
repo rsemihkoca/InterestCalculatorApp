@@ -19,6 +19,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
 
+        services.AddHealthChecks();
         services.AddScoped<IInterestService, InterestService>();
         services.AddControllers();
         services.AddFluentValidationAutoValidation();
@@ -36,7 +37,7 @@ public class Startup
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
+        app.UseHealthChecks("/health");
         app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
         
         app.UseDefaultFiles();

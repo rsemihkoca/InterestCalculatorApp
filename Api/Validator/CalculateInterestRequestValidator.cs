@@ -29,8 +29,9 @@ public class CalculateInterestRequestValidator : AbstractValidator<CalculateInte
                 .InclusiveBetween(0, 12).WithMessage("Faiz vade alanı 0 ile 12 arasında olmalıdır.");
 
             RuleFor(request => request.FaizYuzde)
-                .InclusiveBetween(0, 100).WithMessage("Faiz yüzde alanı 0 ile 100 arasında olmalıdır.");
-
+                .GreaterThanOrEqualTo(0).WithMessage("Faiz yüzde alanı 0'dan küçük olamaz.")
+                .LessThanOrEqualTo(100).WithMessage("Faiz yüzde alanı 100'den büyük olamaz.");
+                
             RuleFor(request => request.Anapara)
                 .GreaterThan(0).WithMessage("Anapara alanı 0'dan büyük olmalıdır.");
 

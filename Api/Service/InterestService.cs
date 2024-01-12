@@ -1,6 +1,6 @@
-using InterestCalculator.Schema;
+using Api.Schema;
 
-namespace InterestCalculator.Service;
+namespace Api.Service;
 
 public class InterestService : IInterestService
 {

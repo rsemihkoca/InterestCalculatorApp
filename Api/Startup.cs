@@ -1,11 +1,11 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using InterestCalculator.Middleware;
-using InterestCalculator.Schema;
-using InterestCalculator.Service;
-using InterestCalculator.Validator;
+using Api.Middleware;
+using Api.Schema;
+using Api.Service;
+using Api.Validator;
 
-namespace InterestCalculator;
+namespace Api;
 
 public class Startup
 {

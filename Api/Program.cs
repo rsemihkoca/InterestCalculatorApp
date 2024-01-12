@@ -1,6 +1,6 @@
-using InterestCalculator;
+using Api;
 
-namespace InterestCalculator;
+namespace Api;
 
 public class Program
 {

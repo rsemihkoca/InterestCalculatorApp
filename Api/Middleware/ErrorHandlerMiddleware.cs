@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace InterestCalculator.Middleware;
+namespace Api.Middleware;
 
 public class GlobalExceptionHandlerMiddleware
 {

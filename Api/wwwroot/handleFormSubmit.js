@@ -30,24 +30,25 @@ function handleFormSubmit(event, form) {
                                 window["hn_faiz_widget_btn"] = false;
                                 submitButton.innerHTML = "Hesapla";
                                 submitButton.disabled = false; // Re-enable the submit button
-
-                                // Display error message
-                                console.error("API Error:", error);
-                                // Update UI with error message
-                                // For example: document.getElementById('error').innerHTML = 'Something went wrong!';
+                                error = error || "An unexpected error occurred. Please try again.";
+                                showPopup(error);
+                                // throw error;
                             });
                     } catch (innerErr) {
                         console.error(innerErr);
+                        showPopup(innerErr.toString());
+
                     }
-                }, 1000);
+                }, 500);
             }
         }
     } catch (err) {
         console.error(err);
+        showPopup(err.toString());
     }
 }
 
-// Simulate an asynchronous API call
+
 function simulateAsyncApiCall(form) {
     // Replace this with the actual API endpoint and method
     const apiUrl = "http://localhost:5210/api/Interest/Calculate";
@@ -59,13 +60,30 @@ function simulateAsyncApiCall(form) {
             body: formData,
         })
             .then((response) => {
-                if (!response.ok) {
-                    reject("Failed to fetch");
-                }
                 return response.json();
             })
-            .then((data) => resolve(data))
-            .catch((error) => reject(error));
+            .then((data) => {
+                // Check if the response has an 'errors' field
+                if (data && data.errors) {
+                    // Extract error messages and format them
+                    const errorMessages = Object.values(data.errors)
+                        .flatMap((error) => error.filter(errorMessage => errorMessage !== "The value '' is invalid."));
+                    // • add a bullet point in front of each message
+                    errorMessages.forEach((message, index) => {
+                        errorMessages[index] = `• ${message}`;
+                    });
+                    const formattedError = errorMessages.join("\n");
+                    // console.error("API Error:", formattedError);
+                    reject(formattedError);
+                } else {
+                    // If there are no errors, resolve with the data
+                    resolve(data);
+                }
+            })
+            .catch((error) => {
+                // console.error("API Request Failed:", error.toString());
+                reject(error);
+            });
     });
 }
 
@@ -76,12 +94,12 @@ function updateResultUI(response) {
                 <form id="hform" class="hnarac" method="get" action="http://localhost:5210/">
                 <fieldset>
                     <legend>Hesaplama Sonuçları</legend>
-                    <div style="margin-left: 2%;font-size: 1rem;font-family: Helvetica,sans-serif;letter-spacing: 0.1rem;color:#333;background: #fff" >
+                    <div style="margin-left: 2%;font-size: 1rem;font-family: Helvetica,sans-serif;letter-spacing: 0.08rem;color:#333;background: #fff" >
                         <br><br>
-                        <strong>Anapara:</strong>&nbsp;${response["anapara"]} <br> <br>
-                        <strong>Faiz Tutarı:</strong>&nbsp;${response["Faiz Tutarı"]} <br> <br>
-                        <strong>Getiri Oranı:</strong>&nbsp;%${response["Getiri Oranı"]} <br> <br>
-                        <strong>Vade Sonu Toplam:</strong>&nbsp;${response["Vade Sonu Toplam"]} <br> <br>
+                        <strong>Anapara:</strong>&nbsp;${response["anapara"].toFixed(2)} <br> <br>
+                        <strong>Faiz Tutarı:</strong>&nbsp;${response["Faiz Tutarı"].toFixed(2)} <br> <br>
+                        <strong>Getiri Oranı:</strong>&nbsp;%${response["Getiri Oranı"].toFixed(2)} <br> <br>
+                        <strong>Vade Sonu Toplam:</strong>&nbsp;${response["Vade Sonu Toplam"].toFixed(2)} <br> <br>
                         <div class="buttons"> <button  type="submit">Başa Dön</button> </div>
                      </div>
        
@@ -89,4 +107,27 @@ function updateResultUI(response) {
                 </form>
                 `;
     }
+}
+
+function showPopup(message) {
+
+    var errorPopup = document.getElementById("errorPopup");
+    var errorMessageElement = document.getElementById("errorMessage");
+
+    errorMessageElement.innerText = message;
+
+    // Calculate dimensions based on message length
+    var messageHeight = errorMessageElement.offsetHeight + 40; // Add padding
+    var messageWidth = errorMessageElement.offsetWidth + 40; // Add padding
+
+    // Set dimensions
+    errorPopup.style.height = messageHeight + "px";
+    errorPopup.style.width = messageWidth + "px";
+
+    errorPopup.classList.add("show");
+
+    setTimeout(function () {
+        errorPopup.classList.remove("show");
+    }, 3000);
+
 }
